@@ -1,0 +1,257 @@
+TestCase Type,Testing Method,Feature Scenario,Description,TestcaseId,Testcase Criticality,Testcase Precondition,Testcase steps,Expected Result
+FT,API,List APIVersion,List the the API Version ,,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created","curl -X GET -H ""Content-Type: application/json"" -url http://127.0.0.1:50040/v1beta","List of Name, Status, UpdatedAt"
+FT,CLI,List APIVersion,List the the API Version ,,H,Same as API_01,osdsctl version list,"List of Name, Status, UpdatedAt"
+FT,CLI,Show APIVersion,Show the the API Version ,,H,Same as API_01,osdsctl version sho <name>,"List of Name, Status, UpdatedAt"
+FT,API,List all Docks,List the all dock of hotpot,,H,Same as API_01,"curl -X GET -H ""Content-Type: application/json"" -url http://127.0.0.1:50040/v1beta/e93b4c0934da416eb9c8d120c5d04d96/docks",List all docks seperated by comma
+FT,API,List one Dock,List single Docks,,,Same as API_01,"curl -X GET -H ""Content-Type: application/json"" -url http://127.0.0.1:50040/v1beta/e93b4c0934da416eb9c8d120c5d04d96/docks/<dockid>",List a single dock detail
+FT,CLI,List all Docks,List the all dock of hotpot,,H,Same as API_01,osdsctl dock list,List all docks seperated by comma
+FT,CLI,List one Dock,List single Docks,,,Same as API_01,osdsctl dock list <dockid>,List a single dock detail
+FT,API,List AvailabiltyZones,List All availabilty zones of hotpot,,,Same as API_01,"curl -X GET -H ""Content-Type: application/json"" -url http://127.0.0.1:50040/v1beta/e93b4c0934da416eb9c8d120c5d04d96/availabilityZones",List all availabiliy zones
+FT,CLI,List AvailabiltyZones,List All availabilty zones of hotpot,,,Same as API_01,No STEPS GIVEN,List all availabiliy zones
+FT,API,List profiles,List all profiles,,,Same as API_01,/profiles,List all profiles in details
+FT,API,List Profiles with query parameter-limit,List Profiles with query parameter-limit,,,same as API_01,,List Profiles with query parameter-limit
+FT,API,List Profiles with query parameter-offset,List Profiles with query parameter-offset,,,same as API_01,,List Profiles with query parameter-offset
+FT,API,List Profiles with query parameter-sortDir,List Profiles with query parameter-sortDir,,,same as API_01,,List Profiles with query parameter-sortDir
+FT,API,List Profiles with query parameter-sortKey,List Profiles with query parameter-sortKey,,,same as API_01,,List Profiles with query parameter-sortKey
+FT,API,List Profiles with query parameter-storageType,List Profiles with query parameter-storageType,,,same as API_01,,List Profiles with query parameter-storagetYPE
+FT,API,List Profiles with query parameter-name,List Profiles with query parameter-name,,,same as API_01,,List Profiles with query parameter-NAME
+FT,API,List Profiles with query parameter-name and tenantId,List Profiles with query parameter-name and tenantId or basically try with some more parameters togher,,,same as API_01,,List Profiles with query parameters
+FT,API,List Profiles with query parameter-tenantId,List Profiles with query parameter-tenatId,,,same as API_01,,List Profiles with query parameter-tenantId
+FT,API,List Profiles with profileId,List Profiles with profileId,,,same as API_01,/profiles/profileId,List Profiles with profileId
+FT,API,List Profile with CustomProperties,"LIst only customeProperties(key value pair) of a  existing profile. For ex:{""key1"": ""value1""} ",,,same as API_01,/profiles/profileId/customProperties,Profile should be listed with customeproperties
+FT,API,List Profiles with profileId and-tenantId,List Profiles with profileId and tenatId,,,same as API_01,,List Profiles with profileId and tenantId
+FT,API,Create Profile-Block-with-Required Parameters,Create a block profile with just required parameters,,,same as API_01,,Create a block profile with required parameters
+FT,API,Create Profile-Block-all Parameters,Create a block profile with all required+Optional parameters,,,same as API_01,,Create a block profile with all(Required + Optional) parameters
+FT,API,Create Profile-File-with-Required Parameters,Create a file profile with just required parameters,,,same as API_01,,Create a file profile with required parameters
+FT,API,Create Profile-File-all Parameters,Create a file profile with all required+Optional parameters,,,same as API_01,,Create a file profile with all(Required + Optional) parameters
+FT,API,Create Profile with CustomProperties,"Add customeProperties(key value pair) to existing profile. For ex:{""key1"": ""value1""} ",,,same as API_01,/profiles/profileId/customProperties,Profile should be created with customeproperties
+FT,API,Create Profile name with Int Type,"Create Profile name with Int Type, ex: name=12345, It should not be string type",,,same as API_01,,
+FT,API,Create Profile name with empty size,,,,same as API_01,,
+FT,API,Create Profile name with size 256 chrs,,,,same as API_01,,
+FT,API,Create Profile name with pattern [A-Za-z0-9_-] only,ex: File_Profile_01,,,same as API_01,,
+FT,API,Create Profile name with having special chars,Create Profile name with having special chars ex: profile@~1##$,,,same as API_01,,
+FT,API,Create Profile with storageType as non-string datatype,"Create Profile with storageType as Int datatype, ex: storageType: 12345",,,same as API_01,,
+FT,API,Create Profile with storageType as non storage keyword,"Create Profile with storageType as non storage keyword, example: storageType=abc. (The actual storage keywords it supports are only: block,file,object)",,,same as API_01,,
+FT,API,Create Profile with description as non-string dataype ,add the description with int/float value etc.,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and datastorage and recoveryTimeObjective as non-int data type,recoveryTimeObjective should be integer in sec. But try with non-int data type. For ex: recoveryTimeObjective:2.3,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and datastorage and provisioningPolicy as non-string data type,"provisioning ploicy should be string. But try with non-string dataType. with storage keywords [thick, thin]",,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and datastorage and  compression as non-boolean data type,,,,same as API_01,,
+FT,,Create Profile with provisioningProperties and datastorage and deduplication as non-boolean data type,,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and datastorage and characterCodeSet as non-string data type,It should support some valid charactercodeSet ex: ASCII,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and datastorage and maxFileNameLengthBytes as non-int data type,"It supports maximum filename length in bytes, but try with some other data TYpe",,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and datastorage and  storageAccessCapability as non-string data type,"storageAccessCapability should be string Type and only [Read, write, Execute]. but try with some other sting combination.",,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and IOConnectivity and  accessProtocol as non-string data type,,,,same as API_01,,
+FT,API,"Create Profile with provisioningProperties and IOConnectivity and  accessProtocol as except from list [iscsi, rbd, fibre channel, or DSWare(Data Service Middleware), nvmeof, nfs]",,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and IOConnectivity and  maxIOPS as non-int data type,,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and IOConnectivity and  minIOPS as non-int data type,,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and IOConnectivity and  maxBWS as non-int data type,,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and IOConnectivity and minBWS as non-int data type,,,,same as API_01,,
+FT,API,Create Profile with provisioningProperties and IOConnectivity and  latency as non-int data type,,,,same as API_01,,
+FT,,,,,,same as API_01,,
+FT,,,,,,same as API_01,,
+FT,API,Update Profile-name,Update Profile name,,,same as API_01,,Updated profile name
+FT,API,Update Profile-description,Update profile description,,,same as API_01,,Updated profile description
+FT,API,Delete Profile,Delete profile,,,same as API_01,/profiles/profileId,Profile should be deleted
+FT,API,Delete customeProperties,Delete profile,,,same as API_01,/profiles/profileId,Profile should be deleted
+,,,,,,,,
+FT,CLI,List profiles,List all profiles,,,Same as API_01,osdsctl profile list,List all profiles in details
+,CLI,List Profiles with Query Parameters,List Profiles with Various Query Parameters,,,same as API_01,osdsctl profile list --<query-para>,List all profiles in details
+FT,CLI,List Profiles with query parameter-limit,List Profiles with query parameter-limit,,,same as API_01,,List Profiles with query parameter-limit
+FT,CLI,List Profiles with query parameter-offset,List Profiles with query parameter-offset,,,same as API_01,,List Profiles with query parameter-offset
+FT,CLI,List Profiles with query parameter-sortDir,List Profiles with query parameter-sortDir,,,same as API_01,,List Profiles with query parameter-sortDir
+FT,CLI,List Profiles with query parameter-sortKey,List Profiles with query parameter-sortKey,,,same as API_01,,List Profiles with query parameter-sortKey
+FT,CLI,List Profiles with query parameter-storageType,List Profiles with query parameter-storageType,,,same as API_01,,List Profiles with query parameter-storagetYPE
+FT,CLI,List Profiles with query parameter-name,List Profiles with query parameter-name,,,same as API_01,,List Profiles with query parameter-NAME
+FT,CLI,List Profiles with query parameter-name and tenantId,List Profiles with query parameter-name and tenantId or basically try with some more parameters togher,,,same as API_01,,List Profiles with query parameters
+FT,CLI,List Profiles with query parameter-tenantId,List Profiles with query parameter-tenatId,,,same as API_01,,List Profiles with query parameter-tenantId
+FT,CLI,List Profiles with profileId,List Profiles with profileId,,,same as API_01,osdsctl profile list <profileId>,List Profiles with profileId
+FT,CLI,List Profile with CustomProperties,"LIst only customeProperties(key value pair) of a  existing profile. For ex:{""key1"": ""value1""} ",,,same as API_01,,Profile should be listed with customeproperties
+FT,CLI,List Profiles with profileId and-tenantId,List Profiles with profileId and tenatId,,,same as API_01,,List Profiles with profileId and tenantId
+FT,CLI,Create Profile,Create Profile,,,same as API_01,,Create Profile
+FT,CLI,Create Profile with same name but different storageType,Create Profile with same name but different storageTYpe,,,same as API_01,,Create Profile with same name but different storageTYpe
+FT,CLI,Create profile with int storageType,I f you create profile with storageTYype=123(let's say). It will fail with wrong message ,,,same as API_01,,Create profile with int storageType
+FT,CLI,Create Profile-Block-with-Required Parameters,Create a block profile with just required parameters,,,same as API_01,,Create a block profile with required parameters
+FT,CLI,Create Profile-Block-all Parameters,Create a block profile with all required+Optional parameters,,,same as API_01,,Create a block profile with all(Required + Optional) parameters
+FT,CLI,Create Profile-File-with-Required Parameters,Create a file profile with just required parameters,,,same as API_01,,Create a file profile with required parameters
+FT,CLI,Create Profile-File-all Parameters,Create a file profile with all required+Optional parameters,,,same as API_01,,Create a file profile with all(Required + Optional) parameters
+FT,CLI,Create Profile with CustomProperties,"Add customeProperties(key value pair) to existing profile. For ex:{""key1"": ""value1""} ",,,same as API_01,,Profile should be created with customeproperties
+FT,CLI,Update Profile-name,Update Profile name,,,same as API_01,,Updated profile name
+FT,CLI,Update Profile-description,Update profile description,,,same as API_01,,Updated profile description
+FT,CLI,Delete Profile,Delete profile,,,same as API_01,osdsctl profile delete <profileId>,Profile should be deleted
+FT,CLI,Delete customeProperties,Delete profile,,,same as API_01,,Profile should be deleted
+,,,,,,,,
+FT,API,List Volumes: with query parameter limit,,,,same as API_01,,Profile should be deleted
+FT,API,List Volumes: with query parameter offset,,,,same as API_01,,
+FT,API,List Volumes: with query parameter sortDir,,,,same as API_01,,
+FT,API,List Volumes: with query parameter sortKey,,,,same as API_01,,
+FT,API,List Volumes: with query parameter name,,,,same as API_01,,
+FT,API,List Volumes: with query parameter profileId,,,,same as API_01,,
+FT,API,List Volumes: with query parameter poolId,,,,same as API_01,,
+FT,API,List Volumes: with query parameter status,,,,same as API_01,,
+FT,API,List Volumes: with query parameter tenantId,,,,same as API_01,,
+,,Create Volume: with just required parameters,,,,same as API_01,,
+,,Create Volume: with all parameters,,,,same as API_01,,
+FT,CLI,Create volume,"[Valid Scenario] inputs: name: should follow regrex[a-z,A-Z,0-9,_,-] and length should be less than 255 chars, description: 'The volume test', size: 1, Example: name:""volume1""",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name: empty or """", description: 'The volume test', size: 1",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name: Length is greated than 255 chr, description 'The volume test', size 1",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name: It contains special characters, description 'The volume test', size 1",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name: name starts with number, description 'The volume test', size 1",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Valid Scenario] inputs: name 'volume1', description 'The volume test', size: should be in range of 1 to max pool capacity(in Gb), Example: 5",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name 'volume1', description 'The volume test', size: 0",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name 'volume1', description 'The volume test', size: more than pool capacity",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name 'volume1', description 'The volume test', size: float value, Example: 10.5",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create volume,"[Invalid Scenario] inputs: name 'volume1', description 'The volume test', size: negative value, Example: -5",,H,"1. Opensds (Hotpot) must be Installed and all processes running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create Volume,"[Valid Scenario] inputs: name: 'volume1', size:1, poolId:<valid poolId>",,H,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create Volume,"[Valid Scenario] inputs: name: 'volume1', size:1, snapshotId:<valid snapshotId>",,H,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create Volume,"[Valid Scenario] inputs: name: 'volume1', size:1, profileId:<valid profileId>",,H,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create Volume,"[Valid Scenario] inputs: name: 'volume1', size:1, groupId:<valid groupId>",,H,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create Volume,"[Valid Scenario] inputs: name: 'volume1', size:1, replicationId:<valid replication>",,H,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,Create Volume,"[Valid Scenario] inputs: name: 'volume1', size:1, availabilityZone:<valid availability Zone>",,H,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl volume create <size> --name=<name>,
+FT,CLI,List Pools,[Valid Scenario]  List all the pools,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl pool list,
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --limit=3
+[CLI] osdsctl pool list --limit=0
+[CLI] osdsctl pool list --limit=100000",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --limit=3 --offset=0
+[CLI] osdsctl pool list --limit=3 --offset=1000
+[CLI] osdsctl pool list --limit=3 --offset=3",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --sortDir=asc
+[CLI] osdsctl pool list --sortDir=decs
+[CLI] osdsctl pool list --sortDir=asc --sortKey=name
+[CLI] osdsctl pool list --sortDir=asc --sortKey=id
+[CLI] osdsctl pool list --sortDir=desc --sortKey=name
+[CLI] osdsctl pool list --sortDir=desc --sortKey=id",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --id=<id>
+[CLI] osdsctl pool list --id=<wrong>
+",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --name=<name>
+[CLI] osdsctl pool list --name=<wrong>
+",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --description=<description>
+[CLI] osdsctl pool list --description=<wrong>
+",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --status=available
+[CLI] osdsctl pool list --status=unavailable
+[CLI] osdsctl pool list --status=wrong",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --storageType=block
+[CLI] osdsctl pool list --storageType=file
+[CLI] osdsctl pool list --storageType=object
+[CLI] osdsctl pool list --storageType=wrong",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --dockId=<dockId>
+[CLI] osdsctl pool list --dockId=<wrong>",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl pool list --availabilityZone=<availabilityZone>
+[CLI] osdsctl pool list --availabilityZone=<wrong>",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl pool list --limit=3 --offset=3 --sortDir=desc --sortKey=name --name=<name> --description=<desc> --status=available --storageType=block --dockId=<> --availabilityZone=<az>,
+FT,CLI,List Pools,[Valid Scenario]  List all the pools using contraints,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","With combination pools=0,1,2 created.
+[CLI] osdsctl pool list --limit=3 --offset=3 --sortDir=desc --sortKey=name --name=<name> --description=<desc> --status=available --storageType=block --dockId=<> --availabilityZone=<az>",
+FT,CLI,List Pools,[Valid Scenario]  List all the pools,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl pool list,
+FT,CLI,List Pool,[Valid Scenario]  List the pool with poolId,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl pool show poolID,
+FT,CLI,List Pool,[Valid Scenario]  List the pool with wrong poolId,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl pool show poolID,
+FT,CLI,Create Host,"[Valid Scenario] inputs: ip: '192.168.20.123', default values of other params",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=<hostip>,
+FT,CLI,Create Host,[InValid Scenario] invalid name param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host create """" --ip=<hostip>",
+FT,CLI,Create Host,[InValid Scenario] inputs: Invalid ip: '257.0.0.0',,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=257.0.0.0,
+FT,CLI,Create Host,"[Valid Scenario] inputs: ip: '192.168.20.123', accessmode=agent",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=<hostip> --accessMode=agent,
+FT,CLI,Create Host,"[InValid Scenario] inputs: Invalid accessmode=""""",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host create test_host --ip=<hostip> --accessMode=""""",
+FT,CLI,Create Host,"[Valid Scenario] inputs: ip: '192.168.20.123', osType=windows",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=<hostip> --osType=windows,
+FT,CLI,Create Host,"[Valid Scenario] inputs: ip: '192.168.20.123', osType=esxi",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host--ip=<hostip> --osType=esxi,
+FT,CLI,Create Host,"[Invalid Scenario] inputs: invalid osType=""""",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host create test_host--ip=<hostip> --osType=""""",
+FT,CLI,Create Host,"[Valid Scenario] inputs: ip: '192.168.20.123', osType=windows, accessmode=agent",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=<hostip> --osType=windows --accessMode=agent,
+FT,CLI,Create Host,"[Valid Scenario] inputs: ip: '192.168.20.123', osType=esxi, accessmode=agent",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=<hostip> --osType=esxi --accessMode=agent,
+FT,CLI,Create Host,"[Invalid Scenario] inputs: ip: '192.168.20.123', availabilityZone=wrong",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host create test_host --ip=<hostip> --availabilityZone=wrong,
+FT,CLI,Delete Host,[Valid Scenario] inputs: id: <hostId>,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host delete <hostId>,
+FT,CLI,Delete Host,"[Invalid Scenario] inputs: id: """"",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host delete """"",
+FT,CLI,List Host,[Valid Scenario] Lists all hosts,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host list,
+FT,CLI,List Host,[Valid Scenario] Return NIL List when no hosts available,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host list,
+FT,CLI,Show Host,[Valid Scenario] Show host details of given hostId,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host show <id>,
+FT,CLI,Show Host,[Invalid Scenario] Show error for given invalid hostId,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host show """"",
+FT,CLI,Update Host,[Valid Scenario] Update hostName,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host update --hostName=new_name,
+FT,CLI,Update Host,[Invalid Scenario] Update hostName,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host update --hostName=""""",
+FT,CLI,Update Host,[Valid Scenario] Update accessMode,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host update --accessMode=agent,
+FT,CLI,Update Host,[Invalid Scenario] Update accessMode,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host update --accessMode=""""",
+FT,CLI,Update Host,[Valid Scenario] Update osType,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host update --osType=windows,
+FT,CLI,Update Host,[Invalid Scenario] Update osType,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host update --osType=""""",
+FT,CLI,Update Host,[Valid Scenario] Update ip,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host update --ip=<diff ip>,
+FT,CLI,Update Host,[Invalid Scenario] Update ip,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host update --ip=""""",
+FT,CLI,Update Host,[Valid Scenario] Update availabilityZone,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host update --availabilityZones=<diff availabilityZone>,
+FT,CLI,Update Host,[Invalid Scenario] Update availabilityZone,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl host update --availabilityZones=""""",
+FT,CLI,Add Initiator,"[Valid Scenario] inputs: <hostId>, <port name>, iSCSI",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl host initiator add <hostId> <port name> iscsi,
+FT,CLI,Add Initiator,"[Valid Scenario] inputs: <hostId>, <port name>, FC",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl initiator add <hostId> <port name> fiber_channel,
+FT,CLI,Add Initiator,"[Valid Scenario] inputs: <hostId>, <port name>, nvmeof",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl initiator add <hostId> <port name> nvmeof,
+FT,CLI,Add Initiator,[Invalid Scenario] invalid name param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl initiator add <hostId> <portname> """"",
+FT,CLI,Add Initiator,[Invalid Scenario] invalid name param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl initiator add <hostId> """" iscsi",
+FT,CLI,Add Initiator,[Invalid Scenario] invalid name param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl initiator add """" <portname> <PROTOCOL>",
+FT,CLI,ADD/Update Initiator,"[Valid Scenario] inputs: <hostId>, <port name>, <protocol>",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl initiator update <hostId> <port name> <protocol>,
+FT,CLI,Add/Update Initiator,[Invalid Scenario] invalid name param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl initiator update """" <portname> <protocol>",
+FT,CLI,Remove Initiator,"[Valid Scenario] inputs: <hostId>, <port name>",,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created",[CLI] osdsctl initiator remove <hostId> <port name>,
+FT,CLI,Remove Initiator,[Invalid Scenario] invalid hostId param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl initiator remove """" <portname>",
+FT,CLI,Remove Initiator,[Invalid Scenario] invalid name param,,,"1. Opensds (Hotpot) must be Installed and all processes should be running 
+2. Block Profile must be created","[CLI] osdsctl initiator remove """" <portname> <protocol>",
